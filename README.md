@@ -2,23 +2,56 @@ This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-
 
 ## Getting Started
 
-First, run the development server:
+### Environment Setup
 
+1. **Install dependencies:**
 ```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+npm install
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+2. **Set up environment variables:**
+```bash
+cp .env.local.example .env.local
+```
+Edit `.env.local` with your configuration.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+3. **Run the development server:**
+```bash
+npm run dev
+```
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+Open [http://localhost:1337](http://localhost:1337) with your browser to see the result.
+
+You can start editing the page by modifying `src/app/page.tsx`. The page auto-updates as you edit the file.
+
+---
+
+## Deployment
+
+This project uses a three-branch workflow:
+- **main** - Production environment
+- **staging** - Pre-production testing
+- **develop** - Active development
+
+See [DEPLOYMENT.md](./DEPLOYMENT.md) for complete deployment instructions and workflow.
+
+### Quick Deploy
+
+**To Staging:**
+```bash
+git checkout staging
+git merge develop
+git push origin staging
+```
+
+**To Production:**
+```bash
+git checkout main
+git merge staging
+git push origin main
+```
+
+---
 
 ## Learn More
 
