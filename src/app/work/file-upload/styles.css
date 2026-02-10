@@ -1,0 +1,441 @@
+@property --progress-angle {
+  syntax: '<angle>';
+  initial-value: 0deg;
+  inherits: false;
+}
+
+.agent-preview {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  background: #f5f5f5;
+}
+
+.agent-header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 50;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 16px 24px;
+  backdrop-filter: blur(12px);
+  background: rgba(245, 245, 245, 0.8);
+  border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+}
+
+.agent-header-logo {
+  font-family: var(--font-ibm-plex-mono);
+  font-size: 14px;
+  letter-spacing: -0.02em;
+  color: inherit;
+  text-decoration: none;
+  transition: color 150ms;
+}
+
+.agent-header-logo:hover {
+  color: #666;
+}
+
+.agent-header-nav {
+  display: flex;
+  align-items: center;
+  gap: 24px;
+}
+
+.agent-header-link {
+  font-size: 14px;
+  color: #666;
+  text-decoration: none;
+  transition: color 150ms;
+}
+
+.agent-header-link:hover {
+  color: #000;
+}
+
+.agent-main {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 32px;
+}
+
+.agent-canvas {
+  width: 100%;
+  max-width: 768px;
+  aspect-ratio: 16 / 9;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: linear-gradient(180deg, #fff 0%, #fafafa 100%);
+  box-shadow:
+    0 0 0 1px rgba(0, 0, 0, 0.03),
+    0 2px 4px rgba(0, 0, 0, 0.02),
+    0 8px 16px rgba(0, 0, 0, 0.03);
+}
+
+.file-uploader {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: linear-gradient(180deg, #f9f9f9 0%, #fff 100%);
+  border: 1px solid rgba(237, 237, 237, 0.9);
+  box-shadow: 0 4px 6.5px rgba(0, 0, 0, 0.03);
+  transition: background 500ms cubic-bezier(0.23, 1, 0.32, 1),
+    border 500ms cubic-bezier(0.23, 1, 0.32, 1),
+    box-shadow 500ms cubic-bezier(0.23, 1, 0.32, 1),
+    padding 500ms cubic-bezier(0.23, 1, 0.32, 1),
+    border-radius 500ms cubic-bezier(0.23, 1, 0.32, 1),
+    gap 500ms cubic-bezier(0.23, 1, 0.32, 1);
+}
+
+.file-uploader[data-state="idle"] {
+  flex-direction: column;
+  gap: 16px;
+  padding: 48px 120px;
+  border-radius: 32px;
+  border: 1.5px dashed rgba(200, 200, 200, 0.6);
+  min-width: 360px;
+}
+
+.file-uploader[data-state="idle"][data-hovering="true"] {
+  border-color: #b8e4f0;
+  background: linear-gradient(180deg, #f0f9fc 0%, #fff 100%);
+  box-shadow: 0 4px 12px rgba(184, 228, 240, 0.3);
+}
+
+.file-uploader[data-state="scanning"],
+.file-uploader[data-state="uploading"],
+.file-uploader[data-state="success"] {
+  flex-direction: row;
+  gap: 12px;
+  padding: 8px 20px 8px 8px;
+  border-radius: 100px;
+}
+
+/* Orb Icon Component */
+.orb-icon {
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: background 300ms cubic-bezier(0.23, 1, 0.32, 1);
+}
+
+.orb-icon[data-state="idle"] {
+  background: #f0f0f0;
+}
+
+.orb-icon[data-state="idle"] svg {
+  opacity: 0.5;
+}
+
+.orb-icon[data-state="idle-hover"] {
+  background:
+    radial-gradient(circle at 30% 30%, rgba(184, 228, 240, 0.9) 0%, transparent 50%),
+    radial-gradient(circle at 70% 60%, rgba(190, 242, 255, 0.85) 0%, transparent 45%),
+    radial-gradient(circle at 50% 80%, rgba(196, 184, 240, 0.8) 0%, transparent 40%),
+    linear-gradient(135deg, #e8f4f8, #f0e8f8);
+  background-size: 200% 200%;
+  animation: orbFloat 4s ease-in-out infinite;
+}
+
+.orb-icon[data-state="idle-hover"] svg {
+  opacity: 1;
+  filter: brightness(0) invert(1);
+}
+
+.orb-icon[data-state="scanning"],
+.orb-icon[data-state="uploading"] {
+  background:
+    radial-gradient(circle at 25% 25%, rgba(184, 228, 240, 0.95) 0%, transparent 45%),
+    radial-gradient(circle at 75% 35%, rgba(190, 242, 255, 0.9) 0%, transparent 40%),
+    radial-gradient(circle at 60% 75%, rgba(196, 184, 240, 0.85) 0%, transparent 45%),
+    radial-gradient(circle at 30% 70%, rgba(240, 184, 216, 0.8) 0%, transparent 40%),
+    linear-gradient(135deg, #e8f4f8, #f8e8f4);
+  background-size: 200% 200%;
+  animation: orbFloat 3s ease-in-out infinite, orbPulse 3s ease-in-out infinite;
+}
+
+.orb-icon[data-state="scanning"] svg,
+.orb-icon[data-state="uploading"] svg {
+  filter: brightness(0) invert(1);
+}
+
+.orb-icon[data-state="uploading"] {
+  position: relative;
+}
+
+.orb-icon[data-state="uploading"]::before {
+  content: '';
+  position: absolute;
+  inset: -3px;
+  border-radius: 50%;
+  --progress-angle: 0deg;
+  background: conic-gradient(from -90deg,
+      rgba(184, 228, 240, 0.9) 0deg,
+      rgba(190, 242, 255, 0.95) calc(var(--progress-angle) * 0.4),
+      rgba(196, 184, 240, 0.9) var(--progress-angle),
+      transparent var(--progress-angle),
+      transparent 360deg);
+  mask: radial-gradient(farthest-side, transparent calc(100% - 2.5px), #000 calc(100% - 2px));
+  -webkit-mask: radial-gradient(farthest-side, transparent calc(100% - 2.5px), #000 calc(100% - 2px));
+  animation: organicFill 2s forwards;
+}
+
+.orb-icon[data-state="success"] {
+  background:
+    radial-gradient(circle at 30% 30%, rgba(220, 252, 231, 0.95) 0%, transparent 45%),
+    radial-gradient(circle at 70% 60%, rgba(187, 247, 208, 0.9) 0%, transparent 40%),
+    radial-gradient(circle at 50% 75%, rgba(167, 243, 195, 0.8) 0%, transparent 45%),
+    linear-gradient(135deg, #ecfdf5, #dcfce7);
+  background-size: 200% 200%;
+  animation: successOrbFloat 4s ease-in-out infinite;
+}
+
+.orb-icon[data-state="success"] svg {
+  filter: brightness(0) saturate(100%) invert(58%) sepia(69%) saturate(456%) hue-rotate(93deg) brightness(95%) contrast(92%);
+}
+
+.file-uploader-text {
+  font-family: var(--font-ibm-plex-mono);
+  font-size: 14px;
+  letter-spacing: -0.5px;
+}
+
+.file-uploader-text[data-state="idle"] {
+  color: #b0b0b0;
+  min-width: 240px;
+  text-align: center;
+}
+
+.file-uploader-text[data-state="scanning"],
+.file-uploader-text[data-state="uploading"] {
+  font-style: italic;
+  background: linear-gradient(90deg, #727272 0%, #d4d4d4 52%, #616161 100%);
+  background-size: 200% 100%;
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  animation: shimmer 2s ease-in-out infinite;
+}
+
+.file-uploader-text[data-state="success"] {
+  color: #374151;
+  font-weight: 500;
+}
+
+@keyframes orbFloat {
+
+  0%,
+  100% {
+    background-position: 0% 0%;
+  }
+
+  25% {
+    background-position: 100% 25%;
+  }
+
+  50% {
+    background-position: 50% 100%;
+  }
+
+  75% {
+    background-position: 0% 50%;
+  }
+}
+
+@keyframes orbPulse {
+
+  0%,
+  100% {
+    transform: scale(1);
+  }
+
+  50% {
+    transform: scale(1.05);
+  }
+}
+
+@keyframes successOrbFloat {
+
+  0%,
+  100% {
+    background-position: 0% 50%;
+  }
+
+  25% {
+    background-position: 50% 0%;
+  }
+
+  50% {
+    background-position: 100% 50%;
+  }
+
+  75% {
+    background-position: 50% 100%;
+  }
+}
+
+@keyframes shimmer {
+  0% {
+    background-position: 200% 0;
+  }
+
+  100% {
+    background-position: -200% 0;
+  }
+}
+
+@keyframes spin {
+  from {
+    transform: rotate(0deg);
+  }
+
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes organicFill {
+  0% {
+    --progress-angle: 0deg;
+  }
+
+  3% {
+    --progress-angle: 15deg;
+  }
+
+  5% {
+    --progress-angle: 18deg;
+  }
+
+  8% {
+    --progress-angle: 35deg;
+  }
+
+  12% {
+    --progress-angle: 52deg;
+  }
+
+  14% {
+    --progress-angle: 58deg;
+  }
+
+  17% {
+    --progress-angle: 72deg;
+  }
+
+  20% {
+    --progress-angle: 85deg;
+  }
+
+  23% {
+    --progress-angle: 105deg;
+  }
+
+  27% {
+    --progress-angle: 118deg;
+  }
+
+  30% {
+    --progress-angle: 135deg;
+  }
+
+  33% {
+    --progress-angle: 142deg;
+  }
+
+  37% {
+    --progress-angle: 165deg;
+  }
+
+  42% {
+    --progress-angle: 185deg;
+  }
+
+  46% {
+    --progress-angle: 205deg;
+  }
+
+  50% {
+    --progress-angle: 220deg;
+  }
+
+  54% {
+    --progress-angle: 238deg;
+  }
+
+  58% {
+    --progress-angle: 252deg;
+  }
+
+  63% {
+    --progress-angle: 272deg;
+  }
+
+  68% {
+    --progress-angle: 288deg;
+  }
+
+  73% {
+    --progress-angle: 305deg;
+  }
+
+  78% {
+    --progress-angle: 318deg;
+  }
+
+  83% {
+    --progress-angle: 332deg;
+  }
+
+  88% {
+    --progress-angle: 345deg;
+  }
+
+  94% {
+    --progress-angle: 355deg;
+  }
+
+  100% {
+    --progress-angle: 360deg;
+  }
+}
+
+.spinner {
+  animation: spin 1s linear infinite;
+}
+
+.reset-button-wrapper {
+  position: absolute;
+  bottom: 24px;
+  left: 0;
+  right: 0;
+  display: flex;
+  justify-content: center;
+}
+
+.reset-button {
+  font-family: var(--font-ibm-plex-mono);
+  font-size: 13px;
+  letter-spacing: -0.3px;
+  color: #888;
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  padding: 8px 16px;
+  border-radius: 8px;
+  transition: color 200ms, background 200ms;
+}
+
+.reset-button:hover {
+  color: #333;
+  background: rgba(0, 0, 0, 0.04);
+}
