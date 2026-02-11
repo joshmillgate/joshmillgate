@@ -55,6 +55,7 @@ export default function HomeContent({ images }: HomeContentProps) {
     const [proximityGlow, setProximityGlow] = useState(0);
     const [velocityStrength, setVelocityStrength] = useState(0);
     const [clickTime, setClickTime] = useState(0);
+    const [linkHoverIntensity, setLinkHoverIntensity] = useState(0);
 
     const lottieRef = useRef<LottieRefCurrentProps>(null);
     const sendPlaneLottieRef = useRef<LottieRefCurrentProps>(null);
@@ -63,7 +64,7 @@ export default function HomeContent({ images }: HomeContentProps) {
     const dollarLottieRef = useRef<LottieRefCurrentProps>(null);
     const rafRef = useRef<number | null>(null);
     const orbRef = useRef<HTMLDivElement>(null);
-    const hoverAudioRef = useRef<HTMLAudioElement | null>(null);
+
 
     useEffect(() => {
         fetch("/icons/location_line.json")
@@ -91,9 +92,7 @@ export default function HomeContent({ images }: HomeContentProps) {
             .then(setDollarAnim)
             .catch(console.error);
 
-        // Initialize hover audio
-        hoverAudioRef.current = new Audio('/audio/digital-ui-click.mp3');
-        hoverAudioRef.current.volume = 0.3;
+
     }, []);
 
     useEffect(() => {
@@ -176,6 +175,45 @@ export default function HomeContent({ images }: HomeContentProps) {
         window.addEventListener('click', handleClick);
         return () => {
             window.removeEventListener('click', handleClick);
+        };
+    }, []);
+
+    // Link hover effect for orb displacement
+    useEffect(() => {
+        let targetIntensity = 0;
+        let currentIntensity = 0;
+        let animationId: number;
+
+        const handleMouseOver = (e: MouseEvent) => {
+            const target = e.target as HTMLElement;
+            // Check if hovering over a link or button
+            if (target.tagName === 'A' || target.closest('a') || target.tagName === 'BUTTON' || target.closest('button')) {
+                targetIntensity = 1;
+            }
+        };
+
+        const handleMouseOut = (e: MouseEvent) => {
+            const target = e.target as HTMLElement;
+            if (target.tagName === 'A' || target.closest('a') || target.tagName === 'BUTTON' || target.closest('button')) {
+                targetIntensity = 0;
+            }
+        };
+
+        const animate = () => {
+            // Smooth interpolation
+            currentIntensity += (targetIntensity - currentIntensity) * 0.15;
+            setLinkHoverIntensity(currentIntensity);
+            animationId = requestAnimationFrame(animate);
+        };
+
+        window.addEventListener('mouseover', handleMouseOver);
+        window.addEventListener('mouseout', handleMouseOut);
+        animate();
+
+        return () => {
+            window.removeEventListener('mouseover', handleMouseOver);
+            window.removeEventListener('mouseout', handleMouseOut);
+            cancelAnimationFrame(animationId);
         };
     }, []);
 
@@ -285,7 +323,7 @@ export default function HomeContent({ images }: HomeContentProps) {
                         transition={{ duration: 0.3, ease: easeOut }}
                         style={{ width: 64, height: 64, marginBottom: 24, alignSelf: 'flex-start', marginLeft: -8 }}
                     >
-                        <ShaderOrb orbState={orbState} mousePosition={mousePosition} clickTime={clickTime} />
+                        <ShaderOrb orbState={orbState} mousePosition={mousePosition} clickTime={clickTime} linkHoverIntensity={linkHoverIntensity} />
                     </motion.div>
 
                     <motion.h1
@@ -395,6 +433,8 @@ export default function HomeContent({ images }: HomeContentProps) {
                             href="mailto:hello@joshmillgate.com"
                             className="home-btn-icon home-btn-icon-stroke"
                             aria-label="Email"
+                            onMouseEnter={() => sendPlaneLottieRef.current?.play()}
+                            onMouseLeave={() => sendPlaneLottieRef.current?.stop()}
                         >
                             {sendPlaneAnim ? (
                                 <Lottie

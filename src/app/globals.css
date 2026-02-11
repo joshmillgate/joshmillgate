@@ -832,18 +832,11 @@ body {
 }
 
 .home-work-heading svg {
-  opacity: 0.4;
   flex-shrink: 0;
 }
 
 .home-work-heading svg path {
   stroke: #B2B2B2;
-}
-
-@media (prefers-color-scheme: dark) {
-  .home-work-heading svg path {
-    stroke: #666;
-  }
 }
 
 .home-work-list {

@@ -28,6 +28,7 @@ uniform float uFresnelPower;
 uniform float uTime;
 uniform float uRipple; // 0 to 1, travels from bottom to top
 uniform vec2 uMouseVelocity; // Mouse movement direction and speed
+uniform float uLinkHover; // 0 to 1, link hover intensity
 
 varying vec3 vColor;
 
@@ -248,6 +249,62 @@ void main() {
     // Add horizontal color variation
     baseColor = mix(baseColor, mix(uLightBColor, uLightAColor, 0.5), horizGradient * 0.3);
     
+    // === RIPPLE COLOR WAVE ===
+    // Add pink-purple gradient that follows the ripple displacement
+    if (uRipple > 0.0) {
+        // Ripple wave position (-1 to 1, traveling upward)
+        float ripplePos = -1.0 + uRipple * 2.5;
+        
+        // Distance from current y position to the ripple wave
+        float distToRipple = abs(position.y - ripplePos);
+        
+        // Ripple color intensity (strongest at wave front, fades with distance)
+        float rippleWidth = 0.5;
+        float rippleColorIntensity = smoothstep(rippleWidth, 0.0, distToRipple) * (1.0 - uRipple * 0.5);
+        
+        // Pink to purple gradient colors
+        vec3 ripplePink = vec3(0.5, 0.6, 1.0);    // Blue-purple (light)
+        vec3 ripplePurple = vec3(0.6, 0.3, 1.0);  // Deep purple
+        
+        // Blend pink to purple based on ripple progress
+        vec3 rippleColor = mix(ripplePink, ripplePurple, uRipple);
+        
+        // Mix the ripple color into the base color
+        baseColor = mix(baseColor, rippleColor, rippleColorIntensity * 0.7);
+    }
+    
+    // === LINK HOVER DIFFUSION REACTION ===
+    // Organic noise-based diffusion pattern on link hover
+    if (uLinkHover > 0.0) {
+        // Multi-scale noise for organic diffusion pattern
+        // Layer 1: Large-scale patterns
+        float noise1 = perlin4d(vec4(position * 2.0, uTime * 0.5));
+        // Layer 2: Medium-scale detail
+        float noise2 = perlin4d(vec4(position * 4.0, uTime * 0.8));
+        // Layer 3: Fine detail
+        float noise3 = perlin4d(vec4(position * 8.0, uTime * 1.2));
+        
+        // Combine noise layers for diffusion reaction pattern
+        float diffusionPattern = noise1 * 0.5 + noise2 * 0.3 + noise3 * 0.2;
+        
+        // Create reaction threshold (areas above threshold get colored)
+        float threshold = 0.2 - uLinkHover * 0.4; // Lower threshold as hover increases
+        float reactionIntensity = smoothstep(threshold, threshold + 0.3, diffusionPattern);
+        
+        // Add temporal variation for organic feel
+        reactionIntensity *= (0.8 + sin(uTime * 2.0 + position.x * 3.0) * 0.2);
+        
+        // Blue-purple diffusion colors
+        vec3 diffusionBlue = vec3(0.4, 0.5, 1.0);    // Bright blue-purple
+        vec3 diffusionPurple = vec3(0.7, 0.4, 1.0);  // Vibrant purple
+        
+        // Mix colors based on noise for organic variation
+        vec3 diffusionColor = mix(diffusionBlue, diffusionPurple, noise2 * 0.5 + 0.5);
+        
+        // Apply diffusion color with hover intensity
+        baseColor = mix(baseColor, diffusionColor, reactionIntensity * uLinkHover * 0.6);
+    }
+    
     // Add subtle lighting shading for depth
     float shading = 0.7 + lightAIntensity * 0.15 + lightBIntensity * 0.15;
     baseColor *= shading;
@@ -275,6 +332,7 @@ interface OrbMeshProps {
     orbState: OrbState;
     mousePosition: { x: number; y: number };
     clickTime?: number;
+    linkHoverIntensity?: number;
 }
 
 const getStateColors = (state: OrbState): { lightA: THREE.Color; lightB: THREE.Color } => {
@@ -314,9 +372,10 @@ const createUniforms = () => ({
     uTime: { value: 0 },
     uRipple: { value: 0 },
     uMouseVelocity: { value: new THREE.Vector2(0, 0) },
+    uLinkHover: { value: 0 },
 });
 
-function OrbMeshInner({ orbState, mousePosition, clickTime = 0 }: OrbMeshProps) {
+function OrbMeshInner({ orbState, mousePosition, clickTime = 0, linkHoverIntensity = 0 }: OrbMeshProps) {
     const materialRef = useRef<THREE.ShaderMaterial>(null);
     const uniformsRef = useRef(createUniforms());
     const lastMouseRef = useRef({ x: 50, y: 50 });
@@ -329,6 +388,9 @@ function OrbMeshInner({ orbState, mousePosition, clickTime = 0 }: OrbMeshProps) 
 
         // Animate time
         materialRef.current.uniforms.uTime.value = state.clock.elapsedTime * 0.3;
+
+        // Update link hover intensity for diffusion effect
+        materialRef.current.uniforms.uLinkHover.value = linkHoverIntensity;
 
         // === CLICK RIPPLE ANIMATION ===
         // Detect new click
@@ -370,11 +432,13 @@ function OrbMeshInner({ orbState, mousePosition, clickTime = 0 }: OrbMeshProps) 
         const uniforms = materialRef.current.uniforms;
 
         // Displacement parameters (main morphing effect)
-        uniforms.uDisplacementStrength.value = Math.min(v * 0.04, 0.18);
-        uniforms.uDisplacementFrequency.value = 1.5 + Math.min(v * 0.06, 0.8);
+        // Add link hover intensity to displacement for subtle reaction
+        const linkBoost = linkHoverIntensity * 0.12;
+        uniforms.uDisplacementStrength.value = Math.min(v * 0.04, 0.18) + linkBoost;
+        uniforms.uDisplacementFrequency.value = 1.5 + Math.min(v * 0.06, 0.8) + linkHoverIntensity * 0.3;
 
         // Distortion parameters (warps noise sampling)
-        uniforms.uDistortionStrength.value = 0.2 + Math.min(v * 0.06, 0.25);
+        uniforms.uDistortionStrength.value = 0.2 + Math.min(v * 0.06, 0.25) + linkBoost * 0.5;
         uniforms.uDistortionFrequency.value = 1.0 + Math.min(v * 0.03, 0.4);
 
         // Light intensity (gets brighter with movement)

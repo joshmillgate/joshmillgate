@@ -11,10 +11,11 @@ interface ShaderOrbProps {
     orbState: OrbState;
     mousePosition: { x: number; y: number };
     clickTime?: number;
+    linkHoverIntensity?: number;
 }
 
 // Memoize the inner canvas to prevent re-mounting on parent re-renders
-const MemoizedCanvas = memo(function InnerCanvas({ orbState, mousePosition, clickTime = 0 }: ShaderOrbProps) {
+const MemoizedCanvas = memo(function InnerCanvas({ orbState, mousePosition, clickTime = 0, linkHoverIntensity = 0 }: ShaderOrbProps) {
     return (
         <Canvas
             camera={{ position: [0, 0, 3], fov: 50 }}
@@ -29,7 +30,7 @@ const MemoizedCanvas = memo(function InnerCanvas({ orbState, mousePosition, clic
             frameloop="always"
         >
             <Suspense fallback={null}>
-                <OrbMesh orbState={orbState} mousePosition={mousePosition} clickTime={clickTime} />
+                <OrbMesh orbState={orbState} mousePosition={mousePosition} clickTime={clickTime} linkHoverIntensity={linkHoverIntensity} />
 
                 <EffectComposer>
                     <Bloom
@@ -45,10 +46,10 @@ const MemoizedCanvas = memo(function InnerCanvas({ orbState, mousePosition, clic
     );
 });
 
-export default memo(function ShaderOrb({ orbState, mousePosition, clickTime = 0 }: ShaderOrbProps) {
+export default memo(function ShaderOrb({ orbState, mousePosition, clickTime = 0, linkHoverIntensity = 0 }: ShaderOrbProps) {
     return (
         <div style={{ width: '100%', height: '100%', minWidth: '42px', minHeight: '42px' }}>
-            <MemoizedCanvas orbState={orbState} mousePosition={mousePosition} clickTime={clickTime} />
+            <MemoizedCanvas orbState={orbState} mousePosition={mousePosition} clickTime={clickTime} linkHoverIntensity={linkHoverIntensity} />
         </div>
     );
 });
