@@ -311,21 +311,19 @@ export default function FileUpload() {
     }
   }, [uploadState]);
 
-  const handleReset = (skipKeyReset?: boolean) => {
+  const handleReset = () => {
     setUploadState("idle");
     setIsHoveringDropzone(false);
-    if (skipKeyReset !== true) {
-      setResetKeys(prev => ({
-        doc: consumedFiles.has("doc") ? prev.doc + 1 : prev.doc,
-        image: consumedFiles.has("image") ? prev.image + 1 : prev.image,
-      }));
-    }
+    setResetKeys(prev => ({
+      doc: consumedFiles.has("doc") ? prev.doc + 1 : prev.doc,
+      image: consumedFiles.has("image") ? prev.image + 1 : prev.image,
+    }));
     setConsumedFiles(new Set());
   };
 
   const handleFileDragStart = () => {
     if (uploadState === "success") {
-      handleReset(true); // Skip key reset to prevent flash - files are already visible
+      handleReset(); // Skip key reset to prevent flash - files are already visible
     }
   };
 
