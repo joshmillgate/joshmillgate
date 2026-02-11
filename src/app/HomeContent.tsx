@@ -637,6 +637,16 @@ export default function HomeContent({ images }: HomeContentProps) {
             >
                 {renderImages()}
 
+                {/* Bottom message */}
+                <motion.div
+                    variants={fadeUp}
+                    transition={{ duration: 0.25, ease: easeOut }}
+                    className="home-meta"
+                    style={{ justifyContent: 'center', marginTop: 40, marginBottom: 0 }}
+                >
+                    more work images coming soon
+                </motion.div>
+
                 {/* Spacer so the last card isn't flush with the bottom */}
                 <div className="h-24" />
             </motion.section>
