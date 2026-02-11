@@ -30,8 +30,8 @@ const index = localFont({
 });
 
 export const metadata: Metadata = {
-  title: "Boilerplate",
-  description: "A clean starting point for your next project",
+  title: "Josh Millgate – Brand & product designer",
+  description: "A multidisciplinary designer with 10 years of experience.",
 };
 
 export default function RootLayout({
