@@ -18,6 +18,7 @@ const fadeUp = {
 const stagger = {
     visible: {
         transition: {
+            delayChildren: 0.2,
             staggerChildren: 0.08,
         },
     },
@@ -505,13 +506,13 @@ export default function HomeContent({ images }: HomeContentProps) {
                                 <div className="home-work-title">Super <span style={{ fontSize: '0.75em', opacity: 0.6 }}>WIP</span></div>
                                 <div className="home-work-description">Design lead</div>
                             </div>
-                            <div
+                            <Link
+                                href="/projects/push-magazine"
                                 className="home-work-item"
-                                style={{ opacity: 0.5, cursor: 'not-allowed' }}
                             >
-                                <div className="home-work-title">Push Magazine <span style={{ fontSize: '0.75em', opacity: 0.6 }}>WIP</span></div>
+                                <div className="home-work-title">Push Magazine</div>
                                 <div className="home-work-description">Editorial design and branding</div>
-                            </div>
+                            </Link>
                         </div>
                     </motion.div>
 

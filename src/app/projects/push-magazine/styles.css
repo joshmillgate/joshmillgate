@@ -1,0 +1,83 @@
+.project-page {
+    min-height: 100vh;
+    padding: 2rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.project-main {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 4rem;
+}
+
+.project-content {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.project-header {
+    width: 100%;
+    max-width: 600px;
+    margin-bottom: 3rem;
+}
+
+.project-title {
+    font-family: var(--font-inter);
+    font-size: 14px;
+    font-weight: 500;
+    letter-spacing: -0.02em;
+    line-height: 1.5;
+    margin-bottom: 20px;
+}
+
+.project-description {
+    font-family: var(--font-geist);
+    font-size: 14px;
+    font-weight: 400;
+    letter-spacing: -0.02em;
+    line-height: 1.65;
+    color: var(--muted);
+    font-feature-settings: "blwf" on, "cv03" on, "cv04" on, "cv11" on, "ss02" on, "ss01" on, "ss03" on, "ss04" on, "ss07" on, "ss08" on, "cv01" on, "cv09" on, "cv12" on, "cv10" on, "cv08" on, "cv05" on, "cv06" on, "zero" on, "case" on, "kern" off, "tnum" on;
+}
+
+.project-gallery {
+    width: 100%;
+    max-width: 1200px;
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+}
+
+.project-image-wrapper {
+    width: 100%;
+    border-radius: 12px;
+    overflow: hidden;
+    background: var(--card-bg);
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.08);
+}
+
+.project-image-wrapper img {
+    width: 100%;
+    height: auto;
+    display: block;
+}
+
+@media (max-width: 768px) {
+    .project-page {
+        padding: 1rem;
+    }
+
+    .project-main {
+        margin-top: 2rem;
+    }
+
+    .project-gallery {
+        gap: 1.5rem;
+    }
+}
