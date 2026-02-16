@@ -399,7 +399,7 @@ export default function HomeContent({ images }: HomeContentProps) {
                                     style={{ width: 16, height: 16 }}
                                 />
                             )}
-                            Remote, Nicaragua
+                            Remote, Guatemala
                         </span>
                     </motion.div>
 
