@@ -499,19 +499,19 @@ export default function HomeContent({ images }: HomeContentProps) {
                                 <div className="home-work-title">Highland Fling <span style={{ fontSize: '0.75em', opacity: 0.6 }}>WIP</span></div>
                                 <div className="home-work-description">E2E product design</div>
                             </div>
-                            <div
+                            <Link
+                                href="/projects/super"
                                 className="home-work-item"
-                                style={{ opacity: 0.5, cursor: 'not-allowed' }}
                             >
-                                <div className="home-work-title">Super <span style={{ fontSize: '0.75em', opacity: 0.6 }}>WIP</span></div>
+                                <div className="home-work-title">Super</div>
                                 <div className="home-work-description">Design lead</div>
-                            </div>
+                            </Link>
                             <Link
                                 href="/projects/push-magazine"
                                 className="home-work-item"
                             >
                                 <div className="home-work-title">Push Magazine</div>
-                                <div className="home-work-description">Editorial design and branding</div>
+                                <div className="home-work-description">Editorial & branding</div>
                             </Link>
                         </div>
                     </motion.div>
@@ -547,7 +547,7 @@ export default function HomeContent({ images }: HomeContentProps) {
                                 className="home-work-item"
                             >
                                 <div className="home-work-title">File Upload</div>
-                                <div className="home-work-description">Drag and drop file upload interaction</div>
+                                <div className="home-work-description">Drag and drop interaction</div>
                             </Link>
                             <div
                                 className="home-work-item"
@@ -648,7 +648,7 @@ export default function HomeContent({ images }: HomeContentProps) {
                             >
                                 <div className="home-work-title">Kolm Digital</div>
                                 <div className="home-work-item-right">
-                                    <div className="home-work-description">Super/Notion website templates</div>
+                                    <div className="home-work-description">Super templates</div>
                                     <ArrowUpRight className="home-work-external-icon" size={14} strokeWidth={2} />
                                 </div>
                             </Link>
