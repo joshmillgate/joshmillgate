@@ -361,7 +361,9 @@ export default function HomeContent({ images }: HomeContentProps) {
                         >
                             Super
                         </Link>
-                        . Currently taking on freelance projects and exploring new opportunities.
+                        . Currently building <Link href="https://cuppa.tax" target="_blank"
+                            rel="noopener noreferrer"
+                            className="link-inline">Cuppa</Link>, a finance tracker for Freelancers and taking on freelance projects.
                     </motion.p>
 
                     <motion.button
@@ -480,6 +482,18 @@ export default function HomeContent({ images }: HomeContentProps) {
                             Projects
                         </h2>
                         <div className="home-work-list">
+                            <Link
+                                href="https://cuppa.tax"
+                                target="_blank"
+                                rel="noopener noreferrer"
+                                className="home-work-item"
+                            >
+                                <div className="home-work-title">Cuppa</div>
+                                <div className="home-work-item-right">
+                                    <div className="home-work-description">Building</div>
+                                    <ArrowUpRight className="home-work-external-icon" size={14} strokeWidth={2} />
+                                </div>
+                            </Link>
                             <Link
                                 href="https://getinboxzero.com"
                                 target="_blank"
