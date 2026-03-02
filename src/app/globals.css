@@ -1084,7 +1084,7 @@ body {
 @media (prefers-color-scheme: dark) {
   .home-card-img {
     border-color: rgba(255, 255, 255, 0.08);
-    background: #1a1a1a;
+    background: #ffffff;
     box-shadow: 0 1px 3px rgba(0, 0, 0, 0.2);
   }
 }
