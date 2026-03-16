@@ -343,7 +343,7 @@ export default function HomeContent({ images }: HomeContentProps) {
                         className="home-body mb-3"
                     >
                         Multi-disciplinary designer specialising in UI/UX and Design
-                        Engineering. I craft interfaces that feel intentional — from concept
+                        Engineering. I craft interfaces that feel intentional, from concept
                         through to production code.
                     </motion.p>
 
@@ -363,7 +363,7 @@ export default function HomeContent({ images }: HomeContentProps) {
                         </Link>
                         . Currently building <Link href="https://cuppa.tax" target="_blank"
                             rel="noopener noreferrer"
-                            className="link-inline">Cuppa</Link>, a finance tracker for Freelancers and taking on freelance projects.
+                            className="link-inline">Cuppa</Link>, a minimalist finance tracker for Freelancers.
                     </motion.p>
 
                     <motion.button
@@ -483,14 +483,21 @@ export default function HomeContent({ images }: HomeContentProps) {
                         </h2>
                         <div className="home-work-list">
                             <Link
+                                href="/projects/arche"
+                                className="home-work-item"
+                            >
+                                <div className="home-work-title">Archē</div>
+                                <div className="home-work-description">Vibecode Context Framework</div>
+                            </Link>
+                            <Link
                                 href="https://cuppa.tax"
                                 target="_blank"
                                 rel="noopener noreferrer"
                                 className="home-work-item"
                             >
-                                <div className="home-work-title">Cuppa</div>
+                                <div className="home-work-title">Cuppa <span style={{ fontFamily: 'var(--font-ibm-plex-mono)', fontSize: '0.7em', opacity: 0.5, background: 'color-mix(in srgb, var(--foreground) 6%, transparent)', padding: '2px 6px', borderRadius: '999px', marginLeft: '4px' }}>WIP</span></div>
                                 <div className="home-work-item-right">
-                                    <div className="home-work-description">Building</div>
+                                    <div className="home-work-description">SaaS</div>
                                     <ArrowUpRight className="home-work-external-icon" size={14} strokeWidth={2} />
                                 </div>
                             </Link>
@@ -502,17 +509,10 @@ export default function HomeContent({ images }: HomeContentProps) {
                             >
                                 <div className="home-work-title">Inbox Zero</div>
                                 <div className="home-work-item-right">
-                                    <div className="home-work-description">Landing page</div>
+                                    <div className="home-work-description">Landing page design</div>
                                     <ArrowUpRight className="home-work-external-icon" size={14} strokeWidth={2} />
                                 </div>
                             </Link>
-                            <div
-                                className="home-work-item"
-                                style={{ opacity: 0.5, cursor: 'not-allowed' }}
-                            >
-                                <div className="home-work-title">Highland Fling <span style={{ fontSize: '0.75em', opacity: 0.6 }}>WIP</span></div>
-                                <div className="home-work-description">E2E product design</div>
-                            </div>
                             <Link
                                 href="/projects/super"
                                 className="home-work-item"
@@ -567,14 +567,14 @@ export default function HomeContent({ images }: HomeContentProps) {
                                 className="home-work-item"
                                 style={{ opacity: 0.5, cursor: 'not-allowed' }}
                             >
-                                <div className="home-work-title">Photo Stack <span style={{ fontSize: '0.75em', opacity: 0.6 }}>WIP</span></div>
+                                <div className="home-work-title">Photo Stack <span style={{ fontFamily: 'var(--font-ibm-plex-mono)', fontSize: '0.7em', opacity: 0.5, background: 'color-mix(in srgb, var(--foreground) 6%, transparent)', padding: '2px 6px', borderRadius: '999px', marginLeft: '4px' }}>WIP</span></div>
                                 <div className="home-work-description">Photo stack interaction</div>
                             </div>
                             <div
                                 className="home-work-item"
                                 style={{ opacity: 0.5, cursor: 'not-allowed' }}
                             >
-                                <div className="home-work-title">Trash Can <span style={{ fontSize: '0.75em', opacity: 0.6 }}>WIP</span></div>
+                                <div className="home-work-title">Trash Can <span style={{ fontFamily: 'var(--font-ibm-plex-mono)', fontSize: '0.7em', opacity: 0.5, background: 'color-mix(in srgb, var(--foreground) 6%, transparent)', padding: '2px 6px', borderRadius: '999px', marginLeft: '4px' }}>WIP</span></div>
                                 <div className="home-work-description">Trash can interaction</div>
                             </div>
                         </div>
@@ -651,18 +651,6 @@ export default function HomeContent({ images }: HomeContentProps) {
                                 <div className="home-work-title">Notion Templates</div>
                                 <div className="home-work-item-right">
                                     <div className="home-work-description">Productivity templates</div>
-                                    <ArrowUpRight className="home-work-external-icon" size={14} strokeWidth={2} />
-                                </div>
-                            </Link>
-                            <Link
-                                href="https://kolm.digital/"
-                                target="_blank"
-                                rel="noopener noreferrer"
-                                className="home-work-item"
-                            >
-                                <div className="home-work-title">Kolm Digital</div>
-                                <div className="home-work-item-right">
-                                    <div className="home-work-description">Super templates</div>
                                     <ArrowUpRight className="home-work-external-icon" size={14} strokeWidth={2} />
                                 </div>
                             </Link>

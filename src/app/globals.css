@@ -776,7 +776,7 @@ body {
   background: #3a3a3a;
   color: #ffffff;
   border: none;
-  border-radius: 999px;
+  border-radius: 8px;
   text-decoration: none;
   cursor: pointer;
   transition: background 200ms ease-out, transform 150ms ease-out;
@@ -920,27 +920,26 @@ body {
 .back-button {
   display: inline-flex;
   align-items: center;
-  gap: 8px;
-  padding: 8px 14px;
+  gap: 6px;
+  padding: 6px 12px;
   font-family: var(--font-index);
-  font-size: 13px;
+  font-size: 12px;
   font-weight: 500;
-  color: var(--foreground);
+  color: var(--muted);
   text-decoration: none;
-  border: 1px solid var(--border);
   border-radius: 8px;
-  background: var(--background);
-  transition: all 150ms ease;
+  background: color-mix(in srgb, var(--foreground) 6%, transparent);
+  transition: background 150ms ease, color 150ms ease;
 }
 
 .back-button:hover {
-  border-color: var(--foreground);
-  background: color-mix(in srgb, var(--foreground) 3%, transparent);
+  background: color-mix(in srgb, var(--foreground) 10%, transparent);
+  color: var(--foreground);
 }
 
 .back-button svg {
-  width: 16px;
-  height: 16px;
+  width: 14px;
+  height: 14px;
   transition: transform 150ms ease;
 }
 

@@ -1,0 +1,499 @@
+/* ─── Arche Page ─── */
+
+.arche-page {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 2rem;
+}
+
+.arche-main {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 4rem;
+}
+
+.arche-content {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+/* ─── Header ─── */
+.arche-header {
+    width: 100%;
+    max-width: 600px;
+    margin-bottom: 3rem;
+}
+
+.arche-title {
+    font-family: var(--font-inter);
+    font-size: 14px;
+    font-weight: 500;
+    letter-spacing: -0.02em;
+    line-height: 1.5;
+    margin-bottom: 12px;
+}
+
+.arche-subtitle {
+    font-family: var(--font-geist);
+    font-size: 14px;
+    font-weight: 400;
+    letter-spacing: -0.01em;
+    line-height: 1.65;
+    color: var(--muted);
+    margin-bottom: 28px;
+    font-style: italic;
+}
+
+.arche-description {
+    font-family: var(--font-geist);
+    font-size: 14px;
+    font-weight: 400;
+    letter-spacing: -0.02em;
+    line-height: 1.65;
+    color: var(--muted);
+    font-feature-settings: "blwf" on, "cv03" on, "cv04" on, "cv11" on, "ss02" on, "ss01" on, "ss03" on, "ss04" on, "ss07" on, "ss08" on, "cv01" on, "cv09" on, "cv12" on, "cv10" on, "cv08" on, "cv05" on, "cv06" on, "zero" on, "case" on, "kern" off, "tnum" on;
+}
+
+.arche-description+.arche-description {
+    margin-top: 12px;
+}
+
+/* ─── Divider ─── */
+.arche-divider {
+    width: 100%;
+    max-width: 600px;
+    height: 1px;
+    background: var(--border);
+    margin: 8px 0 32px;
+}
+
+/* ─── Folder Structure Mockup ─── */
+.arche-mockup-wrapper {
+    width: 100%;
+    max-width: 600px;
+    margin-bottom: 40px;
+}
+
+.arche-mockup-label {
+    font-family: var(--font-index);
+    font-size: 11.5px;
+    text-transform: uppercase;
+    font-weight: 500;
+    color: var(--muted);
+    letter-spacing: 0.01em;
+    margin-bottom: 16px;
+}
+
+.arche-folder-tree {
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    background: var(--background);
+    overflow: hidden;
+}
+
+/* Titlebar */
+.arche-folder-titlebar {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    padding: 8px 12px;
+    border-bottom: 1px solid var(--border);
+    background: color-mix(in srgb, var(--foreground) 2%, var(--background));
+}
+
+.arche-folder-titlebar-dot {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+}
+
+.arche-folder-titlebar-dot:nth-child(1) {
+    background: #FF5F57;
+}
+
+.arche-folder-titlebar-dot:nth-child(2) {
+    background: #FEBC2E;
+}
+
+.arche-folder-titlebar-dot:nth-child(3) {
+    background: #28C840;
+}
+
+.arche-folder-titlebar-text {
+    flex: 1;
+    text-align: center;
+    font-family: var(--font-geist);
+    font-size: 12px;
+    font-weight: 500;
+    color: var(--muted);
+    letter-spacing: -0.01em;
+    margin-right: 36px;
+}
+
+/* Tree items */
+.arche-tree-list {
+    list-style: none;
+    margin: 0;
+    padding: 8px 0;
+}
+
+.arche-tree-item-wrapper {
+    list-style: none;
+}
+
+.arche-tree-item {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 5px 16px 5px 20px;
+    font-family: var(--font-geist);
+    font-size: 13px;
+    font-weight: 400;
+    color: var(--foreground);
+    letter-spacing: -0.01em;
+    cursor: default;
+    transition: background 150ms ease;
+}
+
+.arche-tree-item:hover {
+    background: color-mix(in srgb, var(--foreground) 4%, transparent);
+}
+
+.arche-tree-item-folder {
+    cursor: pointer;
+    user-select: none;
+    position: relative;
+}
+
+@media (hover: none) {
+    .arche-folder-tooltip {
+        display: none;
+    }
+}
+
+.arche-folder-tooltip {
+    position: absolute;
+    left: 20px;
+    bottom: calc(100% + 10px);
+    background: var(--foreground);
+    color: var(--background);
+    font-size: 12px;
+    font-weight: 400;
+    line-height: 1.4;
+    padding: 6px 10px;
+    border-radius: 6px;
+    white-space: nowrap;
+    pointer-events: none;
+    z-index: 10;
+}
+
+.arche-tree-icon {
+    width: 18px;
+    height: 18px;
+    flex-shrink: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.arche-tree-icon-folder svg {
+    fill: #3B9EFF;
+}
+
+.arche-tree-icon-file svg {
+    fill: none;
+    stroke: var(--muted);
+    stroke-width: 1.5;
+}
+
+.arche-tree-chevron {
+    width: 14px;
+    height: 14px;
+    flex-shrink: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--muted);
+    opacity: 0.5;
+    transition: transform 200ms cubic-bezier(0.23, 1, 0.32, 1);
+}
+
+.arche-tree-chevron-open {
+    transform: rotate(90deg);
+}
+
+/* Children list */
+.arche-tree-children {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+}
+
+.arche-tree-item-child {
+    padding-left: 52px;
+    opacity: 0.7;
+    font-size: 12.5px;
+}
+
+/* ─── Section (generic content block) ─── */
+.arche-section {
+    width: 100%;
+    max-width: 600px;
+    margin-bottom: 40px;
+}
+
+.arche-section-label {
+    font-family: var(--font-index);
+    font-size: 11.5px;
+    text-transform: uppercase;
+    font-weight: 500;
+    color: var(--muted);
+    letter-spacing: 0.01em;
+    margin-bottom: 16px;
+}
+
+/* ─── Tables ─── */
+.arche-table-wrapper {
+    width: 100%;
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+}
+
+.arche-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-family: var(--font-geist);
+    font-size: 13px;
+    letter-spacing: -0.01em;
+}
+
+.arche-table thead th {
+    text-align: left;
+    font-weight: 500;
+    font-size: 12px;
+    color: var(--muted);
+    padding: 8px 12px;
+    border-bottom: 1px solid var(--border);
+    white-space: nowrap;
+}
+
+.arche-table tbody td {
+    padding: 10px 12px;
+    color: var(--muted);
+    line-height: 1.55;
+    border-bottom: 1px solid color-mix(in srgb, var(--border) 50%, transparent);
+    vertical-align: top;
+}
+
+.arche-table tbody tr:last-child td {
+    border-bottom: none;
+}
+
+.arche-table tbody tr:hover {
+    background: color-mix(in srgb, var(--foreground) 2%, transparent);
+}
+
+.arche-table td:first-child {
+    white-space: nowrap;
+    font-weight: 450;
+    color: var(--foreground);
+}
+
+.arche-table code {
+    font-family: var(--font-ibm-plex-mono);
+    font-size: 0.88em;
+    background: color-mix(in srgb, var(--foreground) 6%, transparent);
+    padding: 2px 6px;
+    border-radius: 4px;
+}
+
+/* ─── Cost Badges ─── */
+.arche-cost {
+    display: inline-block;
+    font-family: var(--font-index);
+    font-size: 11px;
+    font-weight: 500;
+    padding: 2px 8px;
+    border-radius: 999px;
+    white-space: nowrap;
+}
+
+.arche-cost-low {
+    background: color-mix(in srgb, #22c55e 12%, transparent);
+    color: #16a34a;
+}
+
+.arche-cost-med {
+    background: color-mix(in srgb, #f59e0b 12%, transparent);
+    color: #d97706;
+}
+
+.arche-cost-high {
+    background: color-mix(in srgb, #ef4444 12%, transparent);
+    color: #dc2626;
+}
+
+@media (prefers-color-scheme: dark) {
+    .arche-cost-low {
+        background: color-mix(in srgb, #22c55e 15%, transparent);
+        color: #4ade80;
+    }
+
+    .arche-cost-med {
+        background: color-mix(in srgb, #f59e0b 15%, transparent);
+        color: #fbbf24;
+    }
+
+    .arche-cost-high {
+        background: color-mix(in srgb, #ef4444 15%, transparent);
+        color: #f87171;
+    }
+}
+
+/* ─── Build Pipeline ─── */
+.arche-pipeline {
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+    position: relative;
+    isolation: isolate;
+}
+
+.arche-pipeline-step {
+    display: flex;
+    align-items: flex-start;
+    gap: 16px;
+    padding: 12px 0;
+    position: relative;
+}
+
+/* Line runs from this circle's centre to the next circle's centre */
+.arche-pipeline-step:not(:last-child)::before {
+    content: "";
+    position: absolute;
+    left: 15px;
+    top: 27px;      /* centre of this circle (12px padding + 15px) */
+    bottom: -27px;  /* centre of next circle */
+    width: 1px;
+    background: var(--border);
+}
+
+.arche-pipeline-number {
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    background: var(--background);
+    border: 1px solid var(--border);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: var(--font-ibm-plex-mono);
+    font-size: 12px;
+    font-weight: 500;
+    color: var(--muted);
+    flex-shrink: 0;
+    position: relative;
+    z-index: 1;
+}
+
+.arche-pipeline-body {
+    flex: 1;
+    padding-top: 4px;
+}
+
+.arche-pipeline-title {
+    font-family: var(--font-geist);
+    font-size: 13.5px;
+    font-weight: 500;
+    color: var(--foreground);
+    margin-bottom: 4px;
+    letter-spacing: -0.01em;
+}
+
+.arche-pipeline-desc {
+    font-family: var(--font-geist);
+    font-size: 13px;
+    font-weight: 400;
+    color: var(--muted);
+    line-height: 1.55;
+    letter-spacing: -0.01em;
+}
+
+/* Human step highlight */
+.arche-pipeline-step-human .arche-pipeline-number {
+    background: #E8F1FB;
+    box-shadow: inset 0 0 0 15px #3b9eff1a;
+    border-color: color-mix(in srgb, #3B9EFF 30%, transparent);
+    color: #3B9EFF;
+}
+
+.arche-human-badge {
+    font-family: var(--font-index);
+    font-size: 11px;
+    font-weight: 500;
+    color: #3B9EFF;
+    margin-left: 6px;
+}
+
+/* Inline code in descriptions */
+.arche-description code {
+    font-family: var(--font-ibm-plex-mono);
+    font-size: 0.92em;
+    background: color-mix(in srgb, var(--foreground) 6%, transparent);
+    padding: 1px 5px;
+    border-radius: 4px;
+}
+
+/* ─── CTA ─── */
+.arche-cta-wrapper {
+    width: 100%;
+    max-width: 600px;
+    margin-top: 32px;
+    margin-bottom: 80px;
+}
+
+.arche-cta {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 10px 20px;
+    font-family: var(--font-inter);
+    font-size: 13px;
+    font-weight: 500;
+    background: var(--foreground);
+    color: var(--background);
+    border-radius: 10px;
+    text-decoration: none;
+    transition: opacity 150ms ease-out, transform 150ms ease-out;
+}
+
+.arche-cta:hover {
+    opacity: 0.85;
+}
+
+.arche-cta:active {
+    transform: scale(0.97);
+}
+
+.arche-cta svg {
+    width: 16px;
+    height: 16px;
+}
+
+/* ─── Responsive ─── */
+@media (max-width: 768px) {
+    .arche-page {
+        padding: 1rem;
+    }
+
+    .arche-main {
+        margin-top: 2rem;
+    }
+}
