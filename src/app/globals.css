@@ -917,6 +917,13 @@ body {
   z-index: 100;
 }
 
+@media (max-width: 768px) {
+  .back-button-wrapper {
+    top: 16px;
+    left: 16px;
+  }
+}
+
 .back-button {
   display: inline-flex;
   align-items: center;
