@@ -401,7 +401,7 @@ export default function HomeContent({ images }: HomeContentProps) {
                                     style={{ width: 16, height: 16 }}
                                 />
                             )}
-                            Remote, Guatemala
+                            Remote, Colombia
                         </span>
                     </motion.div>
 
@@ -510,6 +510,18 @@ export default function HomeContent({ images }: HomeContentProps) {
                                 <div className="home-work-title">Inbox Zero</div>
                                 <div className="home-work-item-right">
                                     <div className="home-work-description">Landing page design</div>
+                                    <ArrowUpRight className="home-work-external-icon" size={14} strokeWidth={2} />
+                                </div>
+                            </Link>
+                            <Link
+                                href="https://blog.quoteunquoteapps.com/introducing-highland-fling/"
+                                target="_blank"
+                                rel="noopener noreferrer"
+                                className="home-work-item"
+                            >
+                                <div className="home-work-title">Highland Fling</div>
+                                <div className="home-work-item-right">
+                                    <div className="home-work-description">Product Design</div>
                                     <ArrowUpRight className="home-work-external-icon" size={14} strokeWidth={2} />
                                 </div>
                             </Link>
