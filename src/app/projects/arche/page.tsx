@@ -216,7 +216,7 @@ export default function Arche() {
                                 </thead>
                                 <tbody>
                                     <tr>
-                                        <td><code>/setup</code></td>
+                                        <td><code>/start</code></td>
                                         <td>Start here. Runs the setup wizard to understand your idea and generate all project context files. Run once on a new project.</td>
                                     </tr>
                                     <tr>
