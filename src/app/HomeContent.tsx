@@ -488,8 +488,7 @@ export default function HomeContent({ images }: HomeContentProps) {
                                 rel="noopener noreferrer"
                                 className="home-work-item"
                             >
-                                <div className="home-work-title" style={{ display: 'flex', alignItems: 'center', gap: '6px' }}>
-                                    <img src="/images/ultramock-logo.svg" alt="Ultramock" style={{ width: '1em', height: '1em' }} className="home-work-icon" />
+                                <div className="home-work-title">
                                     Ultramock
                                 </div>
                                 <div className="home-work-item-right">
