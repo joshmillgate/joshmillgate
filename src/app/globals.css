@@ -810,12 +810,12 @@ body {
   width: 100%;
   height: 1px;
   background: var(--border);
-  margin: 32px 0 8px;
+  margin: 20px 0 4px;
 }
 
 /* Work section */
 .home-work-section {
-  margin-top: 40px;
+  margin-top: 24px;
 }
 
 .home-work-heading {
@@ -828,7 +828,7 @@ body {
   font-weight: 500;
   color: var(--muted);
   letter-spacing: 0.01em;
-  margin-bottom: 16px;
+  margin-bottom: 10px;
 }
 
 .home-work-heading svg {
@@ -850,14 +850,14 @@ body {
   align-items: center;
   justify-content: space-between;
   gap: 16px;
-  padding: 8px 0;
+  padding: 5px 0;
   text-decoration: none;
   border-radius: 8px;
   transition: padding 0.25s cubic-bezier(0.23, 1, 0.32, 1), background-color 0.25s cubic-bezier(0.23, 1, 0.32, 1);
 }
 
 .home-work-item:hover {
-  padding: 8px 16px;
+  padding: 5px 12px;
   background-color: rgba(0, 0, 0, 0.04);
 }
 

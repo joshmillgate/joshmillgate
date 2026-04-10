@@ -47,8 +47,9 @@ export default function HomeContent({ images }: HomeContentProps) {
     const [locationAnim, setLocationAnim] = useState<object | null>(null);
     const [sendPlaneAnim, setSendPlaneAnim] = useState<object | null>(null);
     const [versionAnim, setVersionAnim] = useState<object | null>(null);
-    const [folderOpenAnim, setFolderOpenAnim] = useState<object | null>(null);
-    const [dollarAnim, setDollarAnim] = useState<object | null>(null);
+    const [packageAnim, setPackageAnim] = useState<object | null>(null);
+    const [clipboardAnim, setClipboardAnim] = useState<object | null>(null);
+    const [pencilAnim, setPencilAnim] = useState<object | null>(null);
     const [mousePosition, setMousePosition] = useState({ x: 50, y: 50 });
 
     // Orb state management
@@ -61,8 +62,9 @@ export default function HomeContent({ images }: HomeContentProps) {
     const lottieRef = useRef<LottieRefCurrentProps>(null);
     const sendPlaneLottieRef = useRef<LottieRefCurrentProps>(null);
     const versionLottieRef = useRef<LottieRefCurrentProps>(null);
-    const folderOpenLottieRef = useRef<LottieRefCurrentProps>(null);
-    const dollarLottieRef = useRef<LottieRefCurrentProps>(null);
+    const packageLottieRef = useRef<LottieRefCurrentProps>(null);
+    const clipboardLottieRef = useRef<LottieRefCurrentProps>(null);
+    const pencilLottieRef = useRef<LottieRefCurrentProps>(null);
     const rafRef = useRef<number | null>(null);
     const orbRef = useRef<HTMLDivElement>(null);
 
@@ -83,16 +85,20 @@ export default function HomeContent({ images }: HomeContentProps) {
             .then(setVersionAnim)
             .catch(console.error);
 
-        fetch("/icons/folder_open_2_line.json")
+        fetch("/icons/package_2_line.json")
             .then(res => res.json())
-            .then(setFolderOpenAnim)
+            .then(setPackageAnim)
             .catch(console.error);
 
-        fetch("/icons/currency_dollar_line.json")
+        fetch("/icons/clipboard_line.json")
             .then(res => res.json())
-            .then(setDollarAnim)
+            .then(setClipboardAnim)
             .catch(console.error);
 
+        fetch("/icons/pencil_line.json")
+            .then(res => res.json())
+            .then(setPencilAnim)
+            .catch(console.error);
 
     }, []);
 
@@ -352,16 +358,9 @@ export default function HomeContent({ images }: HomeContentProps) {
                         transition={{ duration: 0.25, ease: easeOut }}
                         className="home-body mb-3"
                     >
-                        Previously lead designer at{" "}
-                        <Link
-                            href="https://super.so"
-                            target="_blank"
+                        Currently building <Link href="https://ultramock.io" target="_blank"
                             rel="noopener noreferrer"
-                            className="link-inline"
-                        >
-                            Super
-                        </Link>
-                        . Currently building <Link href="https://cuppa.tax" target="_blank"
+                            className="link-inline">Ultramock</Link>, a cinematic mockup tool, and <Link href="https://cuppa.tax" target="_blank"
                             rel="noopener noreferrer"
                             className="link-inline">Cuppa</Link>, a minimalist finance tracker for Freelancers.
                     </motion.p>
@@ -466,20 +465,20 @@ export default function HomeContent({ images }: HomeContentProps) {
                         variants={fadeUp}
                         transition={{ duration: 0.25, ease: easeOut }}
                         className="home-work-section"
-                        onMouseEnter={() => folderOpenLottieRef.current?.play()}
-                        onMouseLeave={() => folderOpenLottieRef.current?.stop()}
+                        onMouseEnter={() => packageLottieRef.current?.play()}
+                        onMouseLeave={() => packageLottieRef.current?.stop()}
                     >
                         <h2 className="home-work-heading">
-                            {folderOpenAnim && (
+                            {packageAnim && (
                                 <Lottie
-                                    lottieRef={folderOpenLottieRef}
-                                    animationData={folderOpenAnim}
+                                    lottieRef={packageLottieRef}
+                                    animationData={packageAnim}
                                     autoplay={false}
                                     loop={false}
                                     style={{ width: 14, height: 14 }}
                                 />
                             )}
-                            Projects
+                            Products
                         </h2>
                         <div className="home-work-list">
                             <Link
@@ -497,24 +496,53 @@ export default function HomeContent({ images }: HomeContentProps) {
                                 </div>
                             </Link>
                             <Link
-                                href="/projects/arche"
-                                className="home-work-item"
-                            >
-                                <div className="home-work-title">Archē</div>
-                                <div className="home-work-description">Vibecode Context Framework</div>
-                            </Link>
-                            <Link
                                 href="https://cuppa.tax"
                                 target="_blank"
                                 rel="noopener noreferrer"
                                 className="home-work-item"
                             >
-                                <div className="home-work-title">Cuppa <span style={{ fontFamily: 'var(--font-ibm-plex-mono)', fontSize: '0.7em', opacity: 0.5, background: 'color-mix(in srgb, var(--foreground) 6%, transparent)', padding: '2px 6px', borderRadius: '999px', marginLeft: '4px' }}>WIP</span></div>
+                                <div className="home-work-title">Cuppa</div>
                                 <div className="home-work-item-right">
-                                    <div className="home-work-description">SaaS</div>
+                                    <div className="home-work-description">Delightful finance tracker</div>
                                     <ArrowUpRight className="home-work-external-icon" size={14} strokeWidth={2} />
                                 </div>
                             </Link>
+                            <Link
+                                href="/projects/datafastbar"
+                                className="home-work-item"
+                            >
+                                <div className="home-work-title">Datafast Bar</div>
+                                <div className="home-work-description">datafa.st macOS menu bar app</div>
+                            </Link>
+                        </div>
+                    </motion.div>
+
+                    <motion.div
+                        variants={fadeUp}
+                        transition={{ duration: 0.25, ease: easeOut }}
+                        className="home-divider"
+                    />
+
+                    <motion.div
+                        variants={fadeUp}
+                        transition={{ duration: 0.25, ease: easeOut }}
+                        className="home-work-section"
+                        onMouseEnter={() => pencilLottieRef.current?.play()}
+                        onMouseLeave={() => pencilLottieRef.current?.stop()}
+                    >
+                        <h2 className="home-work-heading">
+                            {pencilAnim && (
+                                <Lottie
+                                    lottieRef={pencilLottieRef}
+                                    animationData={pencilAnim}
+                                    autoplay={false}
+                                    loop={false}
+                                    style={{ width: 14, height: 14 }}
+                                />
+                            )}
+                            Design
+                        </h2>
+                        <div className="home-work-list">
                             <Link
                                 href="https://getinboxzero.com"
                                 target="_blank"
@@ -616,22 +644,41 @@ export default function HomeContent({ images }: HomeContentProps) {
                         variants={fadeUp}
                         transition={{ duration: 0.25, ease: easeOut }}
                         className="home-work-section"
-                        onMouseEnter={() => dollarLottieRef.current?.play()}
-                        onMouseLeave={() => dollarLottieRef.current?.stop()}
+                        onMouseEnter={() => clipboardLottieRef.current?.play()}
+                        onMouseLeave={() => clipboardLottieRef.current?.stop()}
                     >
                         <h2 className="home-work-heading">
-                            {dollarAnim && (
+                            {clipboardAnim && (
                                 <Lottie
-                                    lottieRef={dollarLottieRef}
-                                    animationData={dollarAnim}
+                                    lottieRef={clipboardLottieRef}
+                                    animationData={clipboardAnim}
                                     autoplay={false}
                                     loop={false}
                                     style={{ width: 14, height: 14 }}
                                 />
                             )}
-                            Side hustles
+                            Side projects
                         </h2>
                         <div className="home-work-list">
+                            <Link
+                                href="/projects/arche"
+                                className="home-work-item"
+                            >
+                                <div className="home-work-title">Archē</div>
+                                <div className="home-work-description">Vibecode Context Framework</div>
+                            </Link>
+                            <Link
+                                href="https://www.raycast.com/joshmillgate/datafast"
+                                target="_blank"
+                                rel="noopener noreferrer"
+                                className="home-work-item"
+                            >
+                                <div className="home-work-title">Datafast</div>
+                                <div className="home-work-item-right">
+                                    <div className="home-work-description">Raycast extension</div>
+                                    <ArrowUpRight className="home-work-external-icon" size={14} strokeWidth={2} />
+                                </div>
+                            </Link>
                             <Link
                                 href="https://www.raycast.com/joshmillgate/ultrahuman"
                                 target="_blank"
@@ -681,7 +728,7 @@ export default function HomeContent({ images }: HomeContentProps) {
                                 </div>
                             </Link>
                             <Link
-                                href="https://kolm.digital/checkout"
+                                href="https://kolm.lemonsqueezy.com/checkout/buy/b38950fa-aeec-4bbd-990b-8710427a2274"
                                 target="_blank"
                                 rel="noopener noreferrer"
                                 className="home-work-item"

@@ -1,6 +1,20 @@
 import type { NextConfig } from "next";
 
 const nextConfig: NextConfig = {
+  async redirects() {
+    return [
+      {
+        source: '/datafastbar',
+        destination: '/projects/datafastbar',
+        permanent: true,
+      },
+      {
+        source: '/datafast',
+        destination: '/projects/datafastbar',
+        permanent: true,
+      },
+    ];
+  },
   images: {
     qualities: [75, 90, 100],
   },
