@@ -147,23 +147,26 @@
 
 .dfb-feature {
     display: flex;
-    align-items: center;
+    align-items: flex-start;
     gap: 12px;
     font-family: var(--font-geist);
     font-size: 14px;
     line-height: 1.5;
     color: var(--foreground);
-    text-align: center;
+    text-align: left;
+    width: 100%;
 }
 
 .dfb-feature-emoji {
     font-size: 16px;
     flex-shrink: 0;
-    line-height: 1.4;
+    line-height: 1.5;
 }
 
 .dfb-feature-text {
     color: var(--muted);
+    flex: 1;
+    min-width: 0;
 }
 
 .dfb-feature-text strong {
@@ -538,7 +541,7 @@
 /* Responsive */
 @media (max-width: 768px) {
     .dfb-page {
-        padding: 1rem;
+        padding: 1rem 32px;
     }
 
     .dfb-main {
@@ -559,5 +562,9 @@
 
     .dfb-stat-value {
         font-size: 18px;
+    }
+
+    .dfb-feature-emoji {
+        font-size: 20px;
     }
 }
