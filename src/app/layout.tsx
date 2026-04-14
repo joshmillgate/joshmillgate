@@ -3,6 +3,7 @@ import { Inter, IBM_Plex_Mono, Geist } from "next/font/google";
 import localFont from "next/font/local";
 import "./globals.css";
 import { Analytics } from "@vercel/analytics/next";
+import DatafastProvider from "@/components/DatafastProvider";
 
 const inter = Inter({
   variable: "--font-inter",
@@ -45,6 +46,7 @@ export default function RootLayout({
       <body className={`${inter.variable} ${geist.variable} ${index.variable} ${ibmPlexMono.variable} antialiased`}>
         {children}
         <Analytics />
+        <DatafastProvider />
       </body>
     </html>
   );
