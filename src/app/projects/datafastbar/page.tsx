@@ -311,7 +311,7 @@ export default function DatafastBarPage() {
                     variants={fadeUp}
                     transition={{ duration: 0.3, ease: EASING }}
                 >
-                    Your <Link href="https://datafa.st" target="_blank" rel="noopener noreferrer">Datafast</Link> analytics in your macOS menu bar. Revenue, visitors, and live data at a glance.
+                    Your <Link href="https://datafa.st/?via=josh" target="_blank" rel="noopener noreferrer">Datafast</Link> analytics in your macOS menu bar. Revenue, visitors, and live data at a glance.
                 </motion.p>
 
                 <motion.div
@@ -394,7 +394,7 @@ export default function DatafastBarPage() {
 
                 </div>
 
-                <p className="dfb-disclaimer">Not affiliated with <Link href="https://datafa.st" target="_blank" rel="noopener noreferrer">datafa.st</Link></p>
+                <p className="dfb-disclaimer">Not affiliated with <Link href="https://datafa.st/?via=josh" target="_blank" rel="noopener noreferrer">datafa.st</Link></p>
             </motion.main>
         </div>
     );
