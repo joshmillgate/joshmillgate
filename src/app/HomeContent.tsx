@@ -400,7 +400,7 @@ export default function HomeContent({ images }: HomeContentProps) {
                                     style={{ width: 16, height: 16 }}
                                 />
                             )}
-                            Remote, Colombia
+                            Remote, El Salvador
                         </span>
                     </motion.div>
 
