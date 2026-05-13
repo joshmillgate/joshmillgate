@@ -44,7 +44,6 @@ interface HomeContentProps {
 
 export default function HomeContent({ images }: HomeContentProps) {
     const shouldReduceMotion = useReducedMotion();
-    const [locationAnim, setLocationAnim] = useState<object | null>(null);
     const [sendPlaneAnim, setSendPlaneAnim] = useState<object | null>(null);
     const [versionAnim, setVersionAnim] = useState<object | null>(null);
     const [packageAnim, setPackageAnim] = useState<object | null>(null);
@@ -53,13 +52,12 @@ export default function HomeContent({ images }: HomeContentProps) {
     const [mousePosition, setMousePosition] = useState({ x: 50, y: 50 });
 
     // Orb state management
-    const [orbState, setOrbState] = useState<'idle' | 'social-x' | 'social-github' | 'email' | 'work' | 'location'>('idle');
+    const [orbState, setOrbState] = useState<'idle' | 'social-x' | 'social-github' | 'email' | 'work'>('idle');
     const [proximityGlow, setProximityGlow] = useState(0);
     const [velocityStrength, setVelocityStrength] = useState(0);
     const [clickTime, setClickTime] = useState(0);
     const [linkHoverIntensity, setLinkHoverIntensity] = useState(0);
 
-    const lottieRef = useRef<LottieRefCurrentProps>(null);
     const sendPlaneLottieRef = useRef<LottieRefCurrentProps>(null);
     const versionLottieRef = useRef<LottieRefCurrentProps>(null);
     const packageLottieRef = useRef<LottieRefCurrentProps>(null);
@@ -70,11 +68,6 @@ export default function HomeContent({ images }: HomeContentProps) {
 
 
     useEffect(() => {
-        fetch("/icons/location_line.json")
-            .then(res => res.json())
-            .then(setLocationAnim)
-            .catch(console.error);
-
         fetch("/icons/send_plane_line.json")
             .then(res => res.json())
             .then(setSendPlaneAnim)
@@ -378,31 +371,6 @@ export default function HomeContent({ images }: HomeContentProps) {
                     >
                         View work
                     </motion.button>
-
-                    <motion.div
-                        variants={fadeUp}
-                        transition={{ duration: 0.25, ease: easeOut }}
-                        className="home-meta"
-                    >
-                        <span className="availability-dot" />
-                        Available for work&nbsp;&nbsp;·&nbsp;&nbsp;
-                        <span
-                            className="home-meta-location"
-                            onMouseEnter={() => lottieRef.current?.play()}
-                            onMouseLeave={() => lottieRef.current?.stop()}
-                        >
-                            {locationAnim && (
-                                <Lottie
-                                    lottieRef={lottieRef}
-                                    animationData={locationAnim}
-                                    autoplay={false}
-                                    loop={false}
-                                    style={{ width: 16, height: 16 }}
-                                />
-                            )}
-                            Remote, El Salvador
-                        </span>
-                    </motion.div>
 
                     <motion.div
                         variants={fadeUp}
